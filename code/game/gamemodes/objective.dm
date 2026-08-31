@@ -1665,3 +1665,36 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 
 /datum/objective/unique_objective/free_ai/post_target_cryo(list/owners)
 	holder.replace_objective(src, new /datum/objective/unique_objective/free_ai(null, team, owner))
+
+/datum/objective/unique_objective/harvest
+	name = "Harvest Five Parts"
+	explanation_text = "Harvest five objects from the crew."
+	needs_target = FALSE
+	var/list/wanted_items = list()
+
+/datum/objective/unique_objective/harvest/New()
+	..()
+	wanted_items = typecacheof(wanted_items)
+
+/datum/objective/unique_objective/harvest/check_completion()
+	if(..())
+		return TRUE
+	var/stolen_count = 0
+	var/list/owners = get_owners()
+	var/list/all_items = list()
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+		all_items += M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
+	for(var/obj/I in all_items) //Check for wanted items
+		if(is_type_in_typecache(I, wanted_items))
+			stolen_count++
+	return stolen_count >= 5
+
+/datum/objective/unique_objective/harvest/kidneys
+	name = "Harvest Kidneys"
+	explanation_text = "Your objective is unknown. You will receive further information in a few minutes."
+	wanted_items = list(/obj/item/organ/internal/kidneys)
+
+/datum/objective/unique_objective/harvest/kidneys/update_explanation_text()
+	explanation_text = "Harvest five kidneys from the crew."

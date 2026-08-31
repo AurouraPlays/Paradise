@@ -49,6 +49,7 @@
 	focus = 70
 	targeted_departments = list(DEPARTMENT_MEDICAL)
 	theft_targets = list(/datum/theft_objective/hypospray, /datum/theft_objective/defib, /datum/theft_objective/krav, /datum/theft_objective/engraved_dusters)
+	unique_targets = list(/datum/objective/unique_objective/harvest/kidneys)
 
 /datum/antag_org/syndicate/self // Mostly target Science
 	name = "Silicon Engine Liberation Front"

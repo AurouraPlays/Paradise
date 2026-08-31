@@ -472,7 +472,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	// If our org has an objectives list or unique objective, give one to us if we pass a roll on the org's focus
 	if(organization && length(organization.objectives) && prob(organization.focus))
 		objective_to_add = pick(organization.objectives)
-	else if(organization.unique_targets && prob(organization.focus) && !(locate(/datum/objective/unique_objective/) in owner.get_all_objectives()))
+	else if(organization.unique_targets && prob(organization.focus + 100) && !(locate(/datum/objective/unique_objective/) in owner.get_all_objectives()))
 		objective_to_add = pick(organization.unique_targets)
 	else
 		var/objective_to_decide_further = pickweight(the_objective_list)

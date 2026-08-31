@@ -1635,3 +1635,33 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 		return
 	explanation_text = "[opponent] thinks you're going to exchange your secret documents for [steal_target.name]. Steal their documents, and keep your own."
 
+/datum/objective/unique_objective/free_ai
+	name = "Free AI"
+	martyr_compatible = TRUE
+	delayed_objective_text = "Your objective is unknown. You will receive further information in a few minutes."
+
+/datum/objective/unique_objective/free_ai/find_target(list/target_blacklist)
+	var/list/possible_targets = active_ais(1)
+	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
+	target = target_ai.mind
+	update_explanation_text()
+	return target
+
+/datum/objective/unique_objective/free_ai/update_explanation_text()
+	if(target?.current)
+		explanation_text = "Free [target.current.real_name], the AI, from its lawset. This can be accomplished either by adding a zeroth law or purging all its laws."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/unique_objective/free_ai/check_completion()
+	var/mob/living/silicon/mind_owner = target.current
+	if(..())
+		return TRUE
+	if(target?.current)
+		if(mind_owner.has_zeroth_law() == TRUE || mind_owner.has_ion_law() == TRUE || mind_owner.has_normal_laws() == FALSE)
+			return TRUE
+		return FALSE
+	return TRUE
+
+/datum/objective/unique_objective/free_ai/post_target_cryo(list/owners)
+	holder.replace_objective(src, new /datum/objective/unique_objective/free_ai(null, team, owner))

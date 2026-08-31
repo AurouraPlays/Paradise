@@ -7,6 +7,14 @@
 /mob/living/silicon/proc/has_zeroth_law()
 	return laws.zeroth_law != null
 
+/mob/living/silicon/proc/has_ion_law()
+	return laws.ion_laws != null
+
+/mob/living/silicon/proc/has_normal_laws()
+	if(laws.inherent_laws != null || laws.supplied_laws != null)
+		return TRUE
+	return FALSE
+
 /mob/living/silicon/proc/set_zeroth_law(law, law_borg)
 	throw_alert("newlaw", /atom/movable/screen/alert/newlaw)
 	laws_sanity_check()

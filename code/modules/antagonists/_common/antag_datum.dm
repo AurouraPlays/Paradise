@@ -469,9 +469,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/list/static/the_objective_list = list(KILL_OBJECTIVE = 47, THEFT_OBJECTIVE = 42, INCRIMINATE_OBJECTIVE = 5, PROTECT_OBJECTIVE = 6)
 	var/list/the_nonstatic_kill_list = list(DEBRAIN_OBJECTIVE = 39, MAROON_OBJECTIVE = 202, ASS_ONCE_OBJECTIVE = 138, ASS_OBJECTIVE = 293, ASS_PET = 138, INFIL_SEC_OBJECTIVE = 190)
 
-	// If our org has an objectives list, give one to us if we pass a roll on the org's focus
+	// If our org has an objectives list or unique objective, give one to us if we pass a roll on the org's focus
 	if(organization && length(organization.objectives) && prob(organization.focus))
 		objective_to_add = pick(organization.objectives)
+	else if(organization.unique_targets && prob(organization.focus) && !(locate(/datum/objective/unique_objective/) in owner.get_all_objectives()))
+		objective_to_add = pick(organization.unique_targets)
 	else
 		var/objective_to_decide_further = pickweight(the_objective_list)
 		switch(objective_to_decide_further)

@@ -57,6 +57,7 @@
 	focus = 70
 	targeted_departments = list(DEPARTMENT_SCIENCE)
 	theft_targets = list(/datum/theft_objective/reactive, /datum/theft_objective/documents, /datum/theft_objective/hand_tele, /datum/theft_objective/anomalous_particulate)
+	unique_targets = list(/datum/objective/unique_objective/free_ai)
 
 /datum/antag_org/syndicate/electra // Mostly target Engineering
 	name = "Electra Dynamics"

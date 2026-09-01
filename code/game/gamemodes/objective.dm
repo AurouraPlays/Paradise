@@ -1697,11 +1697,13 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	explanation_text = "Harvest five kidneys from the crew."
 	wanted_items = list(/obj/item/organ/internal/kidneys)
 
+/* Putting development of the experiment objectives on hold, because it's super broken at the moment. Will come back to it later. REMEMBER TO UNCOMMENT THE OBJECTIVES IN THE ORG DECLARATIONS
+
 /datum/objective/unique_objective/experiment
 	name = "Test Object"
 	explanation_text = "Test an object on the crew."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
-	needs_target = TRUE
+	needs_target = FALSE
 	var/needed_item = null
 
 /datum/objective/unique_objective/experiment/find_target()
@@ -1714,11 +1716,13 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 
 /datum/objective/unique_objective/experiment/implant
 	name = "Test Implant"
-	explanation_text = "Your objective is unknown. You will receive further information in a few minutes."
+	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
+	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
 
+/*
 /datum/objective/unique_objective/experiment/implant/update_explanation_text()
 	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
-	needed_item = /obj/item/storage/box/syndie_kit/supermatter
+	give_kit(/obj/item/storage/box/syndie_kit/supermatter)*/
 
 /datum/objective/unique_objective/experiment/chemical
 	name = "Test Chemical"
@@ -1726,4 +1730,6 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 
 /datum/objective/unique_objective/experiment/chemical/update_explanation_text()
 	explanation_text = "Test a newly-developed chemical on the crew by feeding it to another crewmember. Optionally, take notes on the chemical's effects."
-	needed_item = /obj/item/storage/box/syndie_kit/supermatter
+	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
+
+*/

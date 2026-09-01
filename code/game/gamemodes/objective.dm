@@ -1669,6 +1669,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/harvest
 	name = "Harvest Five Parts"
 	explanation_text = "Harvest five objects from the crew."
+	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
 	var/list/wanted_items = list()
 
@@ -1693,8 +1694,36 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 
 /datum/objective/unique_objective/harvest/kidneys
 	name = "Harvest Kidneys"
-	explanation_text = "Your objective is unknown. You will receive further information in a few minutes."
+	explanation_text = "Harvest five kidneys from the crew."
 	wanted_items = list(/obj/item/organ/internal/kidneys)
 
-/datum/objective/unique_objective/harvest/kidneys/update_explanation_text()
-	explanation_text = "Harvest five kidneys from the crew."
+/datum/objective/unique_objective/experiment
+	name = "Test Object"
+	explanation_text = "Test an object on the crew."
+	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
+	needs_target = TRUE
+	var/needed_item = null
+
+/datum/objective/unique_objective/experiment/find_target()
+	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
+	update_explanation_text()
+	return
+
+/datum/objective/unique_objective/experiment/proc/hand_out_equipment()
+	give_kit(needed_item)
+
+/datum/objective/unique_objective/experiment/implant
+	name = "Test Implant"
+	explanation_text = "Your objective is unknown. You will receive further information in a few minutes."
+
+/datum/objective/unique_objective/experiment/implant/update_explanation_text()
+	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
+	needed_item = /obj/item/storage/box/syndie_kit/supermatter
+
+/datum/objective/unique_objective/experiment/chemical
+	name = "Test Chemical"
+	explanation_text = "Your objective is unknown. You will receive further information in a few minutes."
+
+/datum/objective/unique_objective/experiment/chemical/update_explanation_text()
+	explanation_text = "Test a newly-developed chemical on the crew by feeding it to another crewmember. Optionally, take notes on the chemical's effects."
+	needed_item = /obj/item/storage/box/syndie_kit/supermatter

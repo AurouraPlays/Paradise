@@ -1642,6 +1642,10 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	delayed_objective_text = "This delayed objective should not be showing up. Please ahelp and file an issue report!"
 	var/needed_item = null
 
+/datum/objective/unique_objective/New()
+	..()
+	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
+
 /datum/objective/unique_objective/proc/hand_out_equipment()
 	give_kit(needed_item)
 

@@ -1692,6 +1692,17 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 			stolen_count++
 	return stolen_count >= 5
 
+/datum/objective/unique_objective/plant_malware
+	name = "Plant Malware"
+	explanation_text = "Plant malware on Nanotrasen's servers."
+	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
+	needs_target = FALSE
+	var/target_device = null
+
+/datum/objective/unique_objective/plant_malware/hack_rnd //Still need to figure out how to give the bloody item to them
+	name = "Hack RND"
+	explanation_text = "Plant malware on Nanotrasen's research servers so they can be monitored remotely. Use your malware injector on the servers to give us a way inside."
+	target_device = /obj/machinery/computer/rnd_network_controller
 
 /* Putting development of the experiment objectives on hold, because it's super broken at the moment. Will come back to it later. REMEMBER TO UNCOMMENT THE OBJECTIVES IN THE ORG DECLARATIONS
 

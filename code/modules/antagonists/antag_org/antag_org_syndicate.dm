@@ -50,7 +50,7 @@
 	focus = 70
 	targeted_departments = list(DEPARTMENT_MEDICAL)
 	theft_targets = list(/datum/theft_objective/hypospray, /datum/theft_objective/defib, /datum/theft_objective/krav, /datum/theft_objective/engraved_dusters)
-	unique_targets = list(/datum/objective/unique_objective/harvest_kidneys*, /datum/objective/unique_objective/experiment/chemical*/)
+	unique_targets = list(/datum/objective/unique_objective/harvest_kidneys/*, /datum/objective/unique_objective/experiment/chemical*/)
 
 /datum/antag_org/syndicate/self // Mostly target Science
 	name = "Silicon Engine Liberation Front"
@@ -80,8 +80,11 @@
 	name = "Federation Analytics and Intelligence Directorate"
 	intro_desc = "You are an undercover agent of the Federation Analytics and Intelligence Directorate, a Trans-Solar agency keeping tabs on the Corporate Wars, among other duties. \
 		Be quick, be efficient, and don't get caught. The Directorate will deny any involvement with your presence here."
-	forced_objectives = list(/datum/objective/assassinate/syndicate, /datum/objective/steal)
+	focus = 70 // FAID does other black ops too sometimes
+	forced_objectives = list(/datum/objective/assassinate/syndicate)
+	objectives = list(/datum/objective/steal)
 	theft_targets = list(/datum/theft_objective/blueprints, /datum/theft_objective/documents)
+	unique_targets = list(/datum/objective/unique_objective/plant_malware/hack_rnd)
 	chaos_level = ORG_CHAOS_HUNTER
 
 /datum/antag_org/syndicate/gorlex // Hijack only

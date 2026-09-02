@@ -1706,7 +1706,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 			stolen_count++
 	return stolen_count >= 5
 
-/datum/objective/unique_objective/plant_malware //Still need to figure out how to give the bloody item to them
+/datum/objective/unique_objective/plant_malware
 	name = "Plant Malware"
 	explanation_text = "Plant malware on Nanotrasen's servers."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."

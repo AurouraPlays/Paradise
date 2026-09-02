@@ -1635,6 +1635,16 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 		return
 	explanation_text = "[opponent] thinks you're going to exchange your secret documents for [steal_target.name]. Steal their documents, and keep your own."
 
+/datum/objective/unique_objective
+	name = "Unique Objective"
+	martyr_compatible = FALSE
+	explanation_text = "This objective should not be showing up. Please ahelp and file an issue report!"
+	delayed_objective_text = "This delayed objective should not be showing up. Please ahelp and file an issue report!"
+	var/needed_item = null
+
+/datum/objective/unique_objective/proc/hand_out_equipment()
+	give_kit(needed_item)
+
 /datum/objective/unique_objective/free_ai
 	name = "Free AI"
 	martyr_compatible = TRUE
@@ -1692,17 +1702,38 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 			stolen_count++
 	return stolen_count >= 5
 
-/datum/objective/unique_objective/plant_malware
+/datum/objective/unique_objective/plant_malware //Still need to figure out how to give the bloody item to them
 	name = "Plant Malware"
 	explanation_text = "Plant malware on Nanotrasen's servers."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
 	var/target_device = null
+	needed_item = /obj/item/malware_injector
 
-/datum/objective/unique_objective/plant_malware/hack_rnd //Still need to figure out how to give the bloody item to them
+/datum/objective/unique_objective/plant_malware/find_target(list/target_blacklist)
+	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
+	SEND_SIGNAL(src, COMSIG_OBJECTIVE_TARGET_FOUND, target)
+	return target
+
+/datum/objective/unique_objective/plant_malware/hack_rnd
 	name = "Hack RND"
-	explanation_text = "Plant malware on Nanotrasen's research servers so they can be monitored remotely. Use your malware injector on the servers to give us a way inside."
-	target_device = /obj/machinery/computer/rnd_network_controller
+	explanation_text = "Plant malware on Nanotrasen's research servers so they can be monitored remotely. Use your malware injector on the network controller to give us a way inside."
+
+/datum/objective/unique_objective/plant_malware/hack_tcomms
+	name = "Hack Telecomms"
+	explanation_text = "Plant malware on Nanotrasen's Telecommunications Core so they can be monitored remotely. Use your malware injector on the server to give us a way inside."
+
+/datum/objective/unique_objective/plant_malware/hack_pda
+	name = "Hack Telecomms"
+	explanation_text = "Plant malware on Nanotrasen's PDA servers so they can be monitored remotely. Use your malware injector on the server or monitoring console to give us a way inside."
+
+/datum/objective/unique_objective/plant_malware/hack_cc_comms
+	name = "Hack Telecomms"
+	explanation_text = "Plant malware on Nanotrasen's long-range communications network so they can be monitored remotely. Use your malware injector on the Communications Console to give us a way inside."
+
+/datum/objective/unique_objective/plant_malware/hack_blackbox
+	name = "Hack Telecomms"
+	explanation_text = "Plant malware on Nanotrasen's Blackbox Recorder so they can be monitored remotely. Use your malware injector on the recorder to give us a way inside."
 
 /* Putting development of the experiment objectives on hold, because it's super broken at the moment. Will come back to it later. REMEMBER TO UNCOMMENT THE OBJECTIVES IN THE ORG DECLARATIONS
 
@@ -1711,15 +1742,11 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	explanation_text = "Test an object on the crew."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
-	var/needed_item = null
 
 /datum/objective/unique_objective/experiment/find_target()
 	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
 	update_explanation_text()
 	return
-
-/datum/objective/unique_objective/experiment/proc/hand_out_equipment()
-	give_kit(needed_item)
 
 /datum/objective/unique_objective/experiment/implant
 	name = "Test Implant"

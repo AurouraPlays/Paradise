@@ -1743,7 +1743,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/experiment/implant
 	name = "Test Implant"
 	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
-	needed_item = /obj/item/abductor_baton
+	needed_item = /obj/item/storage/box/syndie_kit/cybersun_implant_kit
 
 /datum/objective/unique_objective/experiment/chemical
 	name = "Test Chemical"

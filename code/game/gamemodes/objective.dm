@@ -1733,32 +1733,19 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/plant_malware/hack_cc_comms
 	name = "Hack Telecomms"
 	explanation_text = "Plant malware on Nanotrasen's long-range communications network so they can be monitored remotely. Use your malware injector on the Communications Console to give us a way inside."
-/*
+
 /datum/objective/unique_objective/experiment
 	name = "Test Object"
 	explanation_text = "Test an object on the crew."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
 
-/datum/objective/unique_objective/experiment/find_target()
-	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
-	update_explanation_text()
-	return
-
 /datum/objective/unique_objective/experiment/implant
 	name = "Test Implant"
 	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
-	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
-
-/datum/objective/unique_objective/experiment/implant/update_explanation_text()
-	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
-	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
+	needed_item = /obj/item/abductor_baton
 
 /datum/objective/unique_objective/experiment/chemical
 	name = "Test Chemical"
-	explanation_text = "Your objective is unknown. You will receive further information in a few minutes."
-
-/datum/objective/unique_objective/experiment/chemical/update_explanation_text()
-	explanation_text = "Test a newly-developed chemical on the crew by feeding it to another crewmember. Optionally, take notes on the chemical's effects."
-	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
-*/
+	explanation_text = "Test a newly-developed chemical on the crew by using it on another crewmember. Optionally, take notes on the chemical's effects."
+	needed_item = /obj/item/paperplane

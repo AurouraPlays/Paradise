@@ -1714,11 +1714,6 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	var/target_device = null
 	needed_item = /obj/item/malware_injector
 
-/datum/objective/unique_objective/plant_malware/find_target(list/target_blacklist)
-	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
-	SEND_SIGNAL(src, COMSIG_OBJECTIVE_TARGET_FOUND, target)
-	return target
-
 /datum/objective/unique_objective/plant_malware/hack_rnd
 	name = "Hack RND"
 	explanation_text = "Plant malware on Nanotrasen's research servers so they can be monitored remotely. Use your malware injector on the network controller to give us a way inside."
@@ -1734,8 +1729,6 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/plant_malware/hack_cc_comms
 	name = "Hack Telecomms"
 	explanation_text = "Plant malware on Nanotrasen's long-range communications network so they can be monitored remotely. Use your malware injector on the Communications Console to give us a way inside."
-
-/* Putting development of the experiment objectives on hold, because it's super broken at the moment. Will come back to it later. REMEMBER TO UNCOMMENT THE OBJECTIVES IN THE ORG DECLARATIONS
 
 /datum/objective/unique_objective/experiment
 	name = "Test Object"
@@ -1765,5 +1758,3 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/experiment/chemical/update_explanation_text()
 	explanation_text = "Test a newly-developed chemical on the crew by feeding it to another crewmember. Optionally, take notes on the chemical's effects."
 	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
-
-*/

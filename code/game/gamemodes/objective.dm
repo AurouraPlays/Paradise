@@ -1644,7 +1644,8 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 
 /datum/objective/unique_objective/New()
 	..()
-	addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
+	if(needed_item != null)
+		addtimer(CALLBACK(src, PROC_REF(hand_out_equipment)), 5 SECONDS, TIMER_DELETE_ME)
 
 /datum/objective/unique_objective/proc/hand_out_equipment()
 	give_kit(needed_item)
@@ -1655,9 +1656,12 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	delayed_objective_text = "Your objective is unknown. You will receive further information in a few minutes."
 
 /datum/objective/unique_objective/free_ai/find_target(list/target_blacklist)
-	var/list/possible_targets = active_ais(1)
-	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
-	target = target_ai.mind
+	if(length(active_ais()) > 0)
+		var/list/possible_targets = active_ais(1)
+		var/mob/living/silicon/ai/target_ai = pick(possible_targets)
+		target = target_ai.mind
+	else
+		target = null
 	update_explanation_text()
 	return target
 
@@ -1729,7 +1733,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/plant_malware/hack_cc_comms
 	name = "Hack Telecomms"
 	explanation_text = "Plant malware on Nanotrasen's long-range communications network so they can be monitored remotely. Use your malware injector on the Communications Console to give us a way inside."
-
+/*
 /datum/objective/unique_objective/experiment
 	name = "Test Object"
 	explanation_text = "Test an object on the crew."
@@ -1757,3 +1761,4 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/experiment/chemical/update_explanation_text()
 	explanation_text = "Test a newly-developed chemical on the crew by feeding it to another crewmember. Optionally, take notes on the chemical's effects."
 	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
+*/

@@ -483,7 +483,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 				var/the_kill_objective = pickweight(the_nonstatic_kill_list)
 				switch(the_kill_objective)
 					if(DESTROY_OBJECTIVE)
-						objective_to_add = /datum/objective/destroy
+						// Prevent Destroy and Free AI from rolling simultaneously
+						if(locate(/datum/objective/unique_objective/free_ai) in owner.get_all_objectives())
+							objective_to_add = roll_single_human_objective()
+						else
+							objective_to_add = /datum/objective/destroy
 
 					if(DEBRAIN_OBJECTIVE)
 						objective_to_add = /datum/objective/debrain

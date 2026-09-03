@@ -1735,10 +1735,6 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	name = "Hack Telecomms"
 	explanation_text = "Plant malware on Nanotrasen's long-range communications network so they can be monitored remotely. Use your malware injector on the Communications Console to give us a way inside."
 
-/datum/objective/unique_objective/plant_malware/hack_blackbox
-	name = "Hack Telecomms"
-	explanation_text = "Plant malware on Nanotrasen's Blackbox Recorder so they can be monitored remotely. Use your malware injector on the recorder to give us a way inside."
-
 /* Putting development of the experiment objectives on hold, because it's super broken at the moment. Will come back to it later. REMEMBER TO UNCOMMENT THE OBJECTIVES IN THE ORG DECLARATIONS
 
 /datum/objective/unique_objective/experiment

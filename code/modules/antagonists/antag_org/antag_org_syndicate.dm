@@ -85,7 +85,7 @@
 	objectives = list(/datum/objective/steal)
 	theft_targets = list(/datum/theft_objective/blueprints, /datum/theft_objective/documents)
 	unique_targets = list(/datum/objective/unique_objective/plant_malware/hack_rnd, /datum/objective/unique_objective/plant_malware/hack_tcomms,
-		/datum/objective/unique_objective/plant_malware/hack_pda, /datum/objective/unique_objective/plant_malware/hack_cc_comms, /datum/objective/unique_objective/plant_malware/hack_blackbox)
+		/datum/objective/unique_objective/plant_malware/hack_pda, /datum/objective/unique_objective/plant_malware/hack_cc_comms)
 	chaos_level = ORG_CHAOS_HUNTER
 
 /datum/antag_org/syndicate/gorlex // Hijack only

@@ -1739,6 +1739,21 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	explanation_text = "Test an object on the crew."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
+	var/list/bad_items = list(/obj/item/organ/internal/cyberimp/chest/nutriment/sus, /obj/item/organ/internal/cyberimp/arm/gun/laser/sus, /obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm)
+
+/datum/objective/unique_objective/experiment/check_completion()
+	if(..())
+		return TRUE
+	var/list/owners = get_owners()
+	var/list/all_items = list()
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+		all_items += M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
+	for(var/obj/I in all_items) //Check for unwanted items
+		if(I in bad_items)
+			return FALSE
+	return TRUE
 
 /datum/objective/unique_objective/experiment/implant
 	name = "Test Implant"

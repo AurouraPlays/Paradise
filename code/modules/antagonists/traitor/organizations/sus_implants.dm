@@ -39,3 +39,37 @@
 /obj/item/gun/energy/laser/mounted/sus
 	name = "suspicious mounted laser"
 	selfcharge = FALSE
+
+/obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm //'Death Alarm' that goes off when the user is hungry
+	name = "suspicious implant"
+	desc = "This implant looks highly experimental. It probably has some nasty side effects."
+	icon_state = "sus_death"
+	implant_overlay = null
+	slot = "heartdrive"
+	origin_tech = "materials=2;powerstorage=2;biotech=2"
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_GOLD = 500)
+	augment_state = "nutripump"
+	hunger_threshold = NUTRITION_LEVEL_HUNGRY
+
+/obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm/on_life()
+	if(!owner)
+		return
+	if(synthesizing)
+		return
+	if(owner.stat == DEAD)
+		return
+	if(status & ORGAN_DEAD)
+		return FALSE
+	if(owner.nutrition <= hunger_threshold)
+		var/mobname = owner.real_name
+		var/mob/M = owner
+		var/area/t = get_area(M)
+
+		var/obj/item/radio/headset/a = new /obj/item/radio/headset(src)
+		a.follow_target = M
+		a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
+		qdel(src)
+		qdel(a)
+
+		synthesizing = TRUE
+		addtimer(CALLBACK(src, PROC_REF(synth_cool)), 50)

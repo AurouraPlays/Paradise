@@ -21,7 +21,8 @@
 	icon_state = "box"
 
 /obj/item/storage/box/syndie_kit/cybersun_implant_kit/populate_contents()
-	var/obj/item/I = pick(/obj/item/organ/internal/cyberimp/chest/nutriment/sus, /obj/item/organ/internal/cyberimp/arm/gun/laser/sus, /obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm)
+	var/obj/item/I = pick(/obj/item/organ/internal/cyberimp/chest/nutriment/sus, /obj/item/organ/internal/cyberimp/arm/gun/laser/sus,
+		/obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm)
 	new I(src)
 	new /obj/item/paper/guides/antag/implant_experimenting(src)
 
@@ -33,4 +34,21 @@
 		3. Add the implant and close the incision.<br> \
 		4. Stand back and watch!<br> \
 		The implants are highly experimental, so it's likely to have some side effects. <br> \
+		Feel free to take notes!"
+
+/obj/item/storage/box/syndie_kit/interdyne_chemical_kit
+	desc = "It's just an ordinary box."
+	icon_state = "box"
+
+/obj/item/storage/box/syndie_kit/interdyne_chemical_kit/populate_contents()
+	new /obj/item/reagent_containers/glass/bottle/experiment(src)
+	new /obj/item/paper/guides/antag/chemical_experimenting(src)
+
+/obj/item/paper/guides/antag/chemical_experimenting
+	info = "<b>Experimenting on the Crew</b><hr /> \
+		Congratulations, agent! You've been chosen to test a cutting-edge chemical. Here's how to do it:<br> \
+		1. Acquire a test subject, willing or unwilling.<br> \
+		2. Ensure the chemical makes it to their bloodstream.<br>\
+		3. Stand back and watch!<br> \
+		The chemicals are highly experimental, so it's likely to have some side effects. <br> \
 		Feel free to take notes!"

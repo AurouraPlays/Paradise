@@ -1739,7 +1739,8 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	explanation_text = "Test an object on the crew."
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
-	var/list/bad_items = list(/obj/item/organ/internal/cyberimp/chest/nutriment/sus, /obj/item/organ/internal/cyberimp/arm/gun/laser/sus, /obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm)
+	var/list/bad_items = list(/obj/item/organ/internal/cyberimp/chest/nutriment/sus, /obj/item/organ/internal/cyberimp/arm/gun/laser/sus,
+		/obj/item/organ/internal/cyberimp/chest/nutriment/death_alarm, /obj/item/reagent_containers/glass/bottle/experiment)
 
 /datum/objective/unique_objective/experiment/check_completion()
 	if(..())
@@ -1763,4 +1764,4 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 /datum/objective/unique_objective/experiment/chemical
 	name = "Test Chemical"
 	explanation_text = "Test a newly-developed chemical on the crew by using it on another crewmember. Optionally, take notes on the chemical's effects."
-	needed_item = /obj/item/paperplane
+	needed_item = /obj/item/storage/box/syndie_kit/interdyne_chemical_kit

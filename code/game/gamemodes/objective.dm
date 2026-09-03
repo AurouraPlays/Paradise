@@ -1712,7 +1712,7 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	delayed_objective_text = "Your objective is unknown. You will recieve further information in a few minutes."
 	needs_target = FALSE
 	var/target_device = null
-	needed_item = /obj/item/malware_injector
+	needed_item = /obj/item/storage/box/syndie_kit/faid_hacking_kit
 
 /datum/objective/unique_objective/plant_malware/hack_rnd
 	name = "Hack RND"
@@ -1746,10 +1746,9 @@ GLOBAL_LIST_INIT(potential_theft_objectives, (subtypesof(/datum/theft_objective)
 	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
 	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
 
-/*
 /datum/objective/unique_objective/experiment/implant/update_explanation_text()
 	explanation_text = "Test a newly-developed implant on the crew by implanting it in another crewmember. Optionally, take notes on the implant's effects."
-	give_kit(/obj/item/storage/box/syndie_kit/supermatter)*/
+	give_kit(/obj/item/storage/box/syndie_kit/supermatter)
 
 /datum/objective/unique_objective/experiment/chemical
 	name = "Test Chemical"

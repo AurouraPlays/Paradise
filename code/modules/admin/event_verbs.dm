@@ -705,3 +705,29 @@ USER_VERB(set_next_round_lavaland, R_ADMIN, "Set Next Round Lavaland", "Set the 
 	if(choice)
 		SSmapping.next_lavaland_theme = choice
 		message_admins("[key_name_admin(client)] set the Lavaland theme for next round to [choice].")
+
+USER_VERB(trigger_custom_false_alarm, R_EVENT, "Custom False Alarm", "Trigger specific false alarm.", VERB_CATEGORY_EVENT)
+	var/input = clean_input("Please enter anything you want the AI to do. Anything. Serious.", "What?", "", user = client)
+	if(!input)
+		return
+
+	log_admin("Admin [key_name(client)] has added a new AI law - [input]")
+	message_admins("Admin [key_name_admin(client)] has added a new AI law - [input]")
+
+	var/show_log = alert(client, "Show ion message?", "Message", "Yes", "No")
+	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
+
+	new /datum/event/ion_storm(botEmagChance = 0, announceEvent = announce_ion_laws, ionMessage = input)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Add Custom AI Law") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+USER_VERB(trigger_random_false_alarm, R_EVENT, "Random False Alarm", "Trigger a random false alarm.", VERB_CATEGORY_EVENT)
+	var/confirm = alert(client, "You sure?", "Confirm", "Yes", "No")
+	if(confirm != "Yes") return
+	log_admin("[key_name(client)] has added a random AI law.")
+	message_admins("[key_name_admin(client)] has added a random AI law.")
+
+	var/show_log = alert(client, "Show ion message?", "Message", "Yes", "No")
+	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
+
+	new /datum/event/ion_storm(botEmagChance = 0, announceEvent = announce_ion_laws)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Add Random AI Law")

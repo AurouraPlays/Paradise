@@ -5,7 +5,7 @@
 	var/datum/event/working_event
 	var/event_override
 
-/datum/event/falsealarm/New(datum/event_meta/EM, _severity, var/override_input)
+/datum/event/falsealarm/New(datum/event_meta/EM, _severity, override_input)
 	event_override = override_input
 	log_debug("Successfully overrode the false alarm as [event_override]")
 	..()

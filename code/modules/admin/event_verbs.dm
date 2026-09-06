@@ -719,16 +719,12 @@ USER_VERB(trigger_custom_false_alarm, R_EVENT, "Custom False Alarm", "Trigger sp
 	new /datum/event/falsealarm(override_input = input)
 	log_debug("Finished custom false alarm.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Custom False Alarm")
-/*
+
 USER_VERB(trigger_random_false_alarm, R_EVENT, "Random False Alarm", "Trigger a random false alarm.", VERB_CATEGORY_EVENT)
 	var/confirm = alert(client, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
-	log_admin("[key_name(client)] has added a random AI law.")
-	message_admins("[key_name_admin(client)] has added a random AI law.")
+	log_admin("[key_name(client)] has triggered a random false alarm.")
+	message_admins("[key_name_admin(client)] has triggered a random false alarm.")
 
-	var/show_log = alert(client, "Show ion message?", "Message", "Yes", "No")
-	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
-
-	new /datum/event/ion_storm(botEmagChance = 0, announceEvent = announce_ion_laws)
+	new /datum/event/falsealarm()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Random False Alarm")
-*/

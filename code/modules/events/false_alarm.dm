@@ -14,7 +14,7 @@
 	. = ..()
 	var/datum/event/working_event_type
 	log_debug("Starting selection process.")
-	if(!event_override)
+	if(isnull(event_override))
 		working_event_type = pick(possible_event_types)
 		log_debug("Override failure.")
 	else

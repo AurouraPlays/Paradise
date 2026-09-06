@@ -7,7 +7,6 @@
 
 /datum/event/falsealarm/New(datum/event_meta/EM, skeleton = FALSE, _severity, override_input)
 	event_override = override_input
-	log_debug("Successfully overrode the false alarm as [event_override]")
 	..()
 
 /datum/event/falsealarm/start()

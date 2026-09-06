@@ -13,13 +13,10 @@
 /datum/event/falsealarm/start()
 	. = ..()
 	var/datum/event/working_event_type
-	log_debug("Starting selection process.")
 	if(isnull(event_override))
 		working_event_type = pick(possible_event_types)
-		log_debug("Override failure.")
 	else
 		working_event_type = event_override
-		log_debug("Override success.")
 	working_event = new working_event_type(skeleton = TRUE)
 	log_debug("False alarm selecting [working_event] to imitate")
 

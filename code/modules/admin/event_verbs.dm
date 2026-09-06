@@ -717,7 +717,6 @@ USER_VERB(trigger_custom_false_alarm, R_EVENT, "Custom False Alarm", "Trigger sp
 	message_admins("Admin [key_name_admin(client)] has triggered a false alarm - [input]")
 
 	new /datum/event/falsealarm(override_input = input)
-	log_debug("Finished custom false alarm.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Custom False Alarm")
 
 USER_VERB(trigger_random_false_alarm, R_EVENT, "Random False Alarm", "Trigger a random false alarm.", VERB_CATEGORY_EVENT)

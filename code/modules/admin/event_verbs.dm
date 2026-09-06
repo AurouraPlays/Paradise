@@ -707,20 +707,19 @@ USER_VERB(set_next_round_lavaland, R_ADMIN, "Set Next Round Lavaland", "Set the 
 		message_admins("[key_name_admin(client)] set the Lavaland theme for next round to [choice].")
 
 USER_VERB(trigger_custom_false_alarm, R_EVENT, "Custom False Alarm", "Trigger specific false alarm.", VERB_CATEGORY_EVENT)
-	var/list/options = list("Option 1", "Option 2")
-	var/alarm = input(client, "Please select an announcement to imitate", "Custom False Alarm") as null|anything in jobs
-	/*if(!input)
+	//var/list/options = list("Option 1", "Option 2")
+	var/list/event_list = GLOB.false_alarm_types
+	var/input = input(client, "Please select an announcement to imitate", "Custom False Alarm") as null|anything in event_list
+	if(!input)
 		return
 
-	log_admin("Admin [key_name(client)] has added a new AI law - [input]")
-	message_admins("Admin [key_name_admin(client)] has added a new AI law - [input]")
+	log_admin("Admin [key_name(client)] has triggered a false alarm - [input]")
+	message_admins("Admin [key_name_admin(client)] has triggered a false alarm - [input]")
 
-	var/show_log = alert(client, "Show ion message?", "Message", "Yes", "No")
-	var/announce_ion_laws = (show_log == "Yes" ? 1 : -1)
-
-	new /datum/event/ion_storm(botEmagChance = 0, announceEvent = announce_ion_laws, ionMessage = input)
+	new /datum/event/falsealarm(override_input = input)
+	log_debug("Finished custom false alarm.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Custom False Alarm")
-
+/*
 USER_VERB(trigger_random_false_alarm, R_EVENT, "Random False Alarm", "Trigger a random false alarm.", VERB_CATEGORY_EVENT)
 	var/confirm = alert(client, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
